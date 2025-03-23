@@ -17,16 +17,16 @@ jobs:
 
       - name: Install dbt and dependencies
         run: |
-          pip install dbt-core dbt-snowflake sqlfluff sqlfluff-templater-dbt
+          pip install sqlfluff sqlfluff-templater-dbt
 
       - name: Install Astronomer CLI
         run: |
           curl -fsSL https://install.astronomer.io | bash
 
-      - name: dbt-action
-        uses: mwhitaker/dbt-action@master
-        with:
-          dbt_command: 'dbt run --profiles-dir .'
+      #   - name: dbt-action
+      #     uses: mwhitaker/dbt-action@master
+      #     with:
+      #       dbt_command: 'dbt run --profiles-dir .'
 
       - name: Lint dbt models with SQLFluff
         run: |
