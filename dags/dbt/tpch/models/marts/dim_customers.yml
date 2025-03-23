@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_customers
+    columns:
+      - customer_id:
+        tests:
+          - unique
+          - not_null
+      - name:
+        tests:
+          - dbt_utils.not_empty_string

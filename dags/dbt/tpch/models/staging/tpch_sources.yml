@@ -1,0 +1,66 @@
+version: 2
+
+sources:
+  - name: tpch
+    database: snowflake_sample_data
+    schema: tpch_sf1
+
+    tables:
+      - name: orders
+        description: 'Customer orders'
+        columns:
+          - name: o_orderkey
+            data_tests:
+              - unique
+              - not_null
+          - name: o_custkey
+          - name: o_totalprice
+          - name: o_orderdate
+
+      - name: lineitem
+        description: 'Details about line items in orders'
+        columns:
+          - name: l_orderkey
+          - name: l_linenumber
+            data_tests:
+              - unique
+              - not_null
+          - name: l_partkey
+          - name: l_suppkey
+          - name: l_quantity
+          - name: l_extendedprice
+          - name: l_discount
+
+      - name: partsupp
+        description: 'Supplier-part relationships'
+        columns:
+          - name: ps_partkey
+            data_tests:
+              - unique
+              - not_null
+          - name: ps_suppkey
+          - name: ps_availqty
+          - name: ps_supplycost
+
+      - name: part
+        description: 'Details about parts (products)'
+        columns:
+          - name: p_partkey
+            data_tests:
+              - unique
+              - not_null
+          - name: p_name
+          - name: p_brand
+
+      - name: customer
+        description: 'Information about customers'
+        columns:
+          - name: c_custkey
+            data_tests:
+              - unique
+              - not_null
+          - name: c_name
+            data_tests:
+              - not_null
+          - name: c_acctbal
+          - name: c_nationkey

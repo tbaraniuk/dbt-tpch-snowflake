@@ -1,0 +1,40 @@
+name: 'DBT Checks'
+
+on: [push, pull_request]
+
+jobs:
+  dbt-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dbt and dependencies
+        run: |
+          pip install dbt-core dbt-snowflake sqlfluff sqlfluff-templater-dbt
+
+      - name: Install Astronomer CLI
+        run: |
+          curl -fsSL https://install.astronomer.io | bash
+
+      - name: Run dbt compile
+        run: |
+          dbt compile --profiles-dir ./profiles
+
+      - name: Run dbt tests
+        run: |
+          dbt test --profiles-dir ./profiles
+
+      - name: Lint dbt models with SQLFluff
+        run: |
+          sqlfluff lint models/ --dialect snowflake
+
+      - name: Validate Airflow DAGs
+        run: |
+          astro dev parse

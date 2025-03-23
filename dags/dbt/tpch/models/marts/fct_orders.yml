@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fct_orders
+    columns:
+      - name: order_id
+        description: Unique key for each order
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Unique key for each customer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+      - name: total_price
+        description: Total price of order
+        tests:
+          - not_null
+
+      - name: order_data
+        description: The date of order
+        tests:
+          - not_null
