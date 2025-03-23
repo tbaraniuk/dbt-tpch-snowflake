@@ -23,13 +23,10 @@ jobs:
         run: |
           curl -fsSL https://install.astronomer.io | bash
 
-      - name: Run dbt compile
-        run: |
-          dbt compile --profiles-dir /home/taras/.dbt
-
-      - name: Run dbt tests
-        run: |
-          dbt test --profiles-dir /home/taras/.dbt
+      - name: dbt-action
+        uses: mwhitaker/dbt-action@master
+        with:
+          dbt_command: 'dbt run --profiles-dir .'
 
       - name: Lint dbt models with SQLFluff
         run: |
