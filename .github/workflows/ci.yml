@@ -30,7 +30,7 @@ jobs:
 
       - name: Lint dbt models with SQLFluff
         run: |
-          sqlfluff lint models/ --dialect snowflake
+          sqlfluff lint dags/dbt/tpch/models --dialect snowflake
 
       - name: Validate Airflow DAGs
         run: |
