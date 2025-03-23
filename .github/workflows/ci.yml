@@ -25,11 +25,11 @@ jobs:
 
       - name: Run dbt compile
         run: |
-          dbt compile --profiles-dir ~/.dbt
+          dbt compile --profiles-dir /home/taras/.dbt
 
       - name: Run dbt tests
         run: |
-          dbt test --profiles-dir ~/.dbt
+          dbt test --profiles-dir /home/taras/.dbt
 
       - name: Lint dbt models with SQLFluff
         run: |
