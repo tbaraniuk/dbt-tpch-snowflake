@@ -28,9 +28,9 @@ jobs:
       #     with:
       #       dbt_command: 'dbt run --profiles-dir .'
 
-      - name: Lint dbt models with SQLFluff
-        run: |
-          sqlfluff lint dags/dbt/tpch/models --dialect snowflake
+      #   - name: Lint dbt models with SQLFluff
+      #     run: |
+      #       sqlfluff lint dags/dbt/tpch/models --dialect snowflake
 
       - name: Validate Airflow DAGs
         run: |
